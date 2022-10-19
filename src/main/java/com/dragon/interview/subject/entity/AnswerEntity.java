@@ -7,16 +7,25 @@ package com.dragon.interview.subject.entity;
 public class AnswerEntity {
 
     //答案id
-    private Integer answer_id;
+    private Integer answerId;
     //答案
     private String answer;
 
-    public Integer getAnswer_id() {
-        return answer_id;
+
+    public AnswerEntity() {
     }
 
-    public void setAnswer_id(Integer answer_id) {
-        this.answer_id = answer_id;
+    public AnswerEntity(Integer answerId, String answer) {
+        this.answerId = answerId;
+        this.answer = answer;
+    }
+
+    public Integer getAnswerId() {
+        return answerId;
+    }
+
+    public void setAnswerId(Integer answerId) {
+        this.answerId = answerId;
     }
 
     public String getAnswer() {
