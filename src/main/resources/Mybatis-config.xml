@@ -10,7 +10,7 @@
         <!--题目相关实体类注册-->
         <typeAlias type="com.dragon.interview.subject.entity.SubjectEntity" alias="SubjectEntity"/>
         <typeAlias type="com.dragon.interview.subject.entity.AnswerEntity" alias="AnswerEntity"/>
-        <typeAlias type="com.dragon.interview.subject.entity.Subject_DifficultyEntity" alias="Subject_DifficultyEntity"/>
-        <typeAlias type="com.dragon.interview.subject.entity.Subject_TypeEntity" alias="Subject_TypeEntity"/>
+        <typeAlias type="com.dragon.interview.subject.entity.Subject_DifficultyEntity" alias="SubjectDifficultyEntity"/>
+        <typeAlias type="com.dragon.interview.subject.entity.Subject_TypeEntity" alias="SubjectTypeEntity"/>
     </typeAliases>
 </configuration>
