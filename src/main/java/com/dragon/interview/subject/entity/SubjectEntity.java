@@ -18,8 +18,6 @@ public class SubjectEntity {
     private List<AnswerEntity> answer_id;
     //题目难度，存储题目难度ID
     private List<Subject_DifficultyEntity> difficulty;
-    //题目标签，存储标签ID,存储多个id 例如：1,2,3,5
-    private List<Subject_TagEntity> subjet_tag;
     //题目热度，用于搜索推荐
     private Integer subject_heat;
     //题目收藏数
@@ -63,14 +61,6 @@ public class SubjectEntity {
 
     public void setDifficulty(List<Subject_DifficultyEntity> difficulty) {
         this.difficulty = difficulty;
-    }
-
-    public List<Subject_TagEntity> getSubjet_tag() {
-        return subjet_tag;
-    }
-
-    public void setSubjet_tag(List<Subject_TagEntity> subjet_tag) {
-        this.subjet_tag = subjet_tag;
     }
 
     public Integer getSubject_heat() {
