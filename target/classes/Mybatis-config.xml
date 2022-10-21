@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <settings>
+        <!--日志配置-->
+        <setting name="logImpl" value="org.apache.ibatis.logging.stdout.StdOutImpl"/>
+    </settings>
+    <typeAliases>
+        <!--题目相关实体类注册-->
+        <typeAlias type="com.dragon.interview.subject.entity.SubjectEntity" alias="SubjectEntity"/>
+        <typeAlias type="com.dragon.interview.subject.entity.AnswerEntity" alias="AnswerEntity"/>
+
+        <typeAlias type="com.dragon.interview.subject.entity.SubjectDifficultyEntity" alias="SubjectDifficultyEntity"/>
+        <typeAlias type="com.dragon.interview.subject.entity.SubjectTypeEntity" alias="SubjectTypeEntity"/>
+        <typeAlias type="com.dragon.interview.subject.entity.SubjectDifficultyEntity" alias="SubjectDifficultyEntity"/>
+        <typeAlias type="com.dragon.interview.subject.entity.SubjectTypeEntity" alias="SubjectTypeEntity"/>
+
+    </typeAliases>
+</configuration>
