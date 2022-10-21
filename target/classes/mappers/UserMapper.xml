@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dragon.interview.user.mapper.UserMapper">
+    <resultMap id="userResultMap" type="com.dragon.interview.user.entity.User">
+        <id column="user_id" property="userId" jdbcType="INTEGER" />
+        <result column="user_name" property="userName" jdbcType="VARCHAR" />
+        <result column="user_img" property="userImg" jdbcType="VARCHAR" />
+        <result column="sex" property="sex" jdbcType="CHAR" />
+        <result column="introduction" property="introduction" jdbcType="VARCHAR" />
+        <result column="user_status" property="userStatus" jdbcType="CHAR" />
+        <result column="email" property="email" jdbcType="VARCHAR" />
+    </resultMap>
+    <sql id="Base_Column_List" >
+        user_id, user_name, user_img, sex, introduction, user_status, email
+    </sql>
+
+    <!--添加记录 User insertUser(User user);-->
+    <insert id="insertUser" parameterType="User" >
+        insert into user (user_id, user_name, user_img, sex, introduction, user_status, email)
+        values (#{userId,jdbcType=INTEGER}, #{userName,jdbcType=VARCHAR},
+                #{userImg,jdbcType=VARCHAR}, #{sex,jdbcType=CHAR},
+                #{introduction,jdbcType=VARCHAR}, #{userStatus,jdbcType=CHAR},
+                #{email,jdbcType=VARCHAR}
+                )
+    </insert>
+
+    <!-- 根据Id删除记录int deleteUserId(Integer userId);-->
+    <delete id="deleteUserId">
+         delete from user
+         where user_id = #{userId,jdbcType=INTEGER}
+    </delete>
+
+    <!-- 根据性别修改 User updateUserSex(char sex);-->
+    <update id="updateUserSex" parameterType="User" >
+        update user
+        <set >
+            <if test="sex != null" >
+                sex = #{sex,jdbcType=CHAR},
+            </if>
+        </set>
+        where user_id = #{userId,jdbcType=INTEGER}
+    </update>
+
+    <!-- 查询所有用户信息 List<User> getAllUser();-->
+    <select id="getAllUser" resultMap="userResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from user
+    </select>
+
+    <!-- 根据姓名进行查询  User getUserName(User user);-->
+    <select id="getUserName" resultMap="userResultMap" >
+
+        select
+        <include refid="Base_Column_List" />
+        from user
+        where user_name = #{userName,jdbcType=VARCHAR}
+    </select>
+    <!-- 根据姓名进行模糊查询List<User> getUserByLike(@Param("userName") String userName);-->
+    <select id="getUserByLike" resultMap="userResultMap">
+
+        select
+        <include refid="Base_Column_List" />
+        from user
+        where user_name like "%"#{userName}"%"
+    </select>
+    <!-- 根据id删除多条记录 int deleteUsersId(@Param("userIds") Integer[] userIds);  -->
+    <delete id="deleteUsersId">
+        delete from user where
+        <foreach collection="userIds" item="userId" separator="or">
+            user_id = #{userId,jdbcType=INTEGER}
+        </foreach>
+    </delete>
+</mapper>
