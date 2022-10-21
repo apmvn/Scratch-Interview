@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dragon.interview.subject.mapper.SubjectMapper">
+    <select id="getSubjectList" resultType="com.dragon.interview.subject.vo.SubjectVO">
+        select subject_id, subject_title, subject_type.st_name, dev_language
+        from subject,subject_type,language_cate
+        where subject_type_id = subject_type.st_id
+        and dev_language_id = language_id
+    </select>
+</mapper>
+
