@@ -2,7 +2,6 @@ package com.dragon.interview.subject.service;
 
 import com.dragon.interview.subject.entity.SubjectEntity;
 import com.dragon.interview.subject.mapper.SubjectMapper;
-import com.dragon.interview.subject.vo.SubjectVO;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -14,15 +13,18 @@ public class SubjectServiceImp implements ISubjectService {
     @Resource
     private SubjectMapper subjectMapper;
 
-
     @Override
-    public SubjectEntity subjectBy() {
-        return subjectMapper.subjectBy();
+    public List<SubjectEntity> getSubjectList() {
+        return subjectMapper.getSubjectList();
     }
 
     @Override
-    public List<SubjectVO> getSubjectList() {
-        List<SubjectVO> subjectEntityList = subjectMapper.getSubjectList();
-        return subjectEntityList;
+    public List<SubjectEntity> getSubjectByTypeName(SubjectEntity subjectEntity) {
+        return subjectMapper.getSubjectByTypeName(subjectEntity);
+    }
+
+    @Override
+    public List<SubjectEntity> getSubjectByLanguage(SubjectEntity subjectEntity) {
+        return subjectMapper.getSubjectByLanguage(subjectEntity);
     }
 }

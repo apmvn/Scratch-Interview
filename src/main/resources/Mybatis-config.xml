@@ -9,12 +9,5 @@
     <typeAliases>
         <!--题目相关实体类注册-->
         <typeAlias type="com.dragon.interview.subject.entity.SubjectEntity" alias="SubjectEntity"/>
-        <typeAlias type="com.dragon.interview.subject.entity.AnswerEntity" alias="AnswerEntity"/>
-
-        <typeAlias type="com.dragon.interview.subject.entity.SubjectDifficultyEntity" alias="SubjectDifficultyEntity"/>
-        <typeAlias type="com.dragon.interview.subject.entity.SubjectTypeEntity" alias="SubjectTypeEntity"/>
-        <typeAlias type="com.dragon.interview.subject.entity.SubjectDifficultyEntity" alias="SubjectDifficultyEntity"/>
-        <typeAlias type="com.dragon.interview.subject.entity.SubjectTypeEntity" alias="SubjectTypeEntity"/>
-
     </typeAliases>
 </configuration>
