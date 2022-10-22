@@ -1,6 +1,5 @@
 package com.dragon.interview.user.service;
 
-
 import com.dragon.interview.user.entity.User;
 import org.apache.ibatis.annotations.Param;
 
@@ -14,9 +13,9 @@ import java.util.List;
  * @Description:
  */
 public interface UserService {
-
-    //添加记录
-    public int insertUser(User user);
+    //===========后台==============
+    //根据ID进行查询
+    public User getUserId(Integer userId);
 
     //查询姓名
     public User getUserName(String userName);
@@ -35,4 +34,16 @@ public interface UserService {
 
     //修改记录
     public int updateUserSex(Integer userId , char sex);
+    //=============前台============
+
+    //登录验证
+    User login(String userName,String userPass);
+
+    //注册
+    public int insertUser(User user);
+
+    //用户修改
+    public int updateUser(User user);
+
+
 }
