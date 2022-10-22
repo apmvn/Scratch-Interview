@@ -6,6 +6,8 @@
     <resultMap id="userResultMap" type="com.dragon.interview.user.entity.User">
         <id column="user_id" property="userId" jdbcType="INTEGER" />
         <result column="user_name" property="userName" jdbcType="VARCHAR" />
+        <result column="user_name" property="userName" jdbcType="VARCHAR" />
+        <result column="user_pass" property="userPass" jdbcType="VARCHAR" />
         <result column="user_img" property="userImg" jdbcType="VARCHAR" />
         <result column="sex" property="sex" jdbcType="CHAR" />
         <result column="introduction" property="introduction" jdbcType="VARCHAR" />
@@ -13,18 +15,9 @@
         <result column="email" property="email" jdbcType="VARCHAR" />
     </resultMap>
     <sql id="Base_Column_List" >
-        user_id, user_name, user_img, sex, introduction, user_status, email
+        user_id, user_name,user_pass, user_img, sex, introduction, user_status, email
     </sql>
-
-    <!--添加记录 User insertUser(User user);-->
-    <insert id="insertUser" parameterType="User" >
-        insert into user (user_id, user_name, user_img, sex, introduction, user_status, email)
-        values (#{userId,jdbcType=INTEGER}, #{userName,jdbcType=VARCHAR},
-                #{userImg,jdbcType=VARCHAR}, #{sex,jdbcType=CHAR},
-                #{introduction,jdbcType=VARCHAR}, #{userStatus,jdbcType=CHAR},
-                #{email,jdbcType=VARCHAR}
-                )
-    </insert>
+<!--后台-->
 
     <!-- 根据Id删除记录int deleteUserId(Integer userId);-->
     <delete id="deleteUserId">
@@ -58,6 +51,7 @@
         from user
         where user_name = #{userName,jdbcType=VARCHAR}
     </select>
+
     <!-- 根据姓名进行模糊查询List<User> getUserByLike(@Param("userName") String userName);-->
     <select id="getUserByLike" resultMap="userResultMap">
 
@@ -66,6 +60,7 @@
         from user
         where user_name like "%"#{userName}"%"
     </select>
+
     <!-- 根据id删除多条记录 int deleteUsersId(@Param("userIds") Integer[] userIds);  -->
     <delete id="deleteUsersId">
         delete from user where
@@ -73,4 +68,60 @@
             user_id = #{userId,jdbcType=INTEGER}
         </foreach>
     </delete>
+
+<!--前台-->
+    <!-- 根据ID进行查询  User getUserId(Integer userId);-->
+    <select id="getUserId" resultMap="userResultMap" >
+        select
+        <include refid="Base_Column_List" />
+        from user
+        where  user_id = #{userId,jdbcType=INTEGER}
+    </select>
+    <!--注册 User insertUser(User user);-->
+    <insert id="insertUser" parameterType="User" >
+        insert into user (user_id,user_name, user_pass, user_img, sex, introduction, user_status, email)
+        values (null ,#{userName,jdbcType=VARCHAR},
+                #{userPass,jdbcType=VARCHAR}, #{userImg,jdbcType=VARCHAR},
+                #{sex,jdbcType=CHAR}, #{introduction,jdbcType=VARCHAR},
+                #{userStatus,jdbcType=CHAR}, #{email,jdbcType=VARCHAR}
+                )
+    </insert>
+
+    <!-- 登录 User login(String userName,String userPass); -->
+    <select id="login" resultMap="userResultMap" >
+        select
+        <include refid="Base_Column_List" />
+        from user
+        where user_name = #{userName,jdbcType=VARCHAR} and
+        user_pass = #{userPass,jdbcType=VARCHAR}
+    </select>
+
+    <!-- 根据性别修改    int updateUser(User user);-->
+    <update id="updateUser" parameterType="User" >
+        update user
+        <set >
+            <if test="userName != null" >
+                user_name = #{userName,jdbcType=VARCHAR},
+            </if>
+            <if test="userPass != null" >
+                user_pass = #{userPass,jdbcType=VARCHAR},
+            </if>
+            <if test="userImg != null" >
+                user_img = #{userImg,jdbcType=VARCHAR},
+            </if>
+            <if test="sex != null" >
+                sex = #{sex,jdbcType=CHAR},
+            </if>
+            <if test="introduction != null" >
+                introduction = #{introduction,jdbcType=VARCHAR},
+            </if>
+            <if test="userStatus != null" >
+                user_status = #{userStatus,jdbcType=CHAR},
+            </if>
+            <if test="email != null" >
+                email = #{email,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where user_id = #{userId,jdbcType=INTEGER}
+    </update>
 </mapper>
