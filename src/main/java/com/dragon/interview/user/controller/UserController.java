@@ -2,7 +2,7 @@ package com.dragon.interview.user.controller;
 
 
 import com.dragon.interview.user.entity.User;
-import com.dragon.interview.user.service.impl.UserServiceImpl;
+import com.dragon.interview.user.service.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
