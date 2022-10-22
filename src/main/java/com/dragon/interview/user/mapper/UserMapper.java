@@ -1,6 +1,5 @@
 package com.dragon.interview.user.mapper;
 
-
 import com.dragon.interview.user.entity.User;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -16,9 +15,7 @@ import java.util.List;
  */
 @Mapper
 public interface UserMapper {
-
-    //添加记录
-    int insertUser(User user);
+    //===========后台==================
 
     //查询一条记录
     User getUserName(String userName);
@@ -38,6 +35,17 @@ public interface UserMapper {
     //模糊查询
     List<User> getUserByLike(@Param("userName") String userName);
 
-    //分页
-    //List<User> selectByExample(EmpExample example);
+    //根据Id进行查
+    //查询一条记录
+    User getUserId(Integer userId);
+    //===========前台==========
+
+    //登录验证
+    User login(String userName,String userPass);
+
+    //注册
+    int insertUser(User user);
+
+    //用户修改信息
+    int updateUser(User user);
 }
