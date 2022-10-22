@@ -13,6 +13,8 @@ public class User {
 
     private String userName;
 
+    private String userPass;
+
     private String userImg;
 
     private char  sex;
@@ -23,9 +25,10 @@ public class User {
 
     private String email;
 
-    public User(Integer userId, String userName, String userImg, char sex, String introduction, char userStatus, String email) {
+    public User(Integer userId, String userName, String userPass, String userImg, char sex, String introduction, char userStatus, String email) {
         this.userId = userId;
         this.userName = userName;
+        this.userPass = userPass;
         this.userImg = userImg;
         this.sex = sex;
         this.introduction = introduction;
@@ -50,6 +53,14 @@ public class User {
 
     public void setUserName(String userName) {
         this.userName = userName;
+    }
+
+    public String getUserPass() {
+        return userPass;
+    }
+
+    public void setUserPass(String userPass) {
+        this.userPass = userPass;
     }
 
     public String getUserImg() {
@@ -97,6 +108,7 @@ public class User {
         return "User{" +
                 "userId=" + userId +
                 ", userName='" + userName + '\'' +
+                ", userPass='" + userPass + '\'' +
                 ", userImg='" + userImg + '\'' +
                 ", sex=" + sex +
                 ", introduction='" + introduction + '\'' +
