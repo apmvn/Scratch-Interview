@@ -1,9 +1,8 @@
 package com.dragon.interview.user.controller;
 
 
-
 import com.dragon.interview.user.entity.User;
-import com.dragon.interview.user.service.UserServiceImpl;
+import com.dragon.interview.user.service.impl.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,16 +23,8 @@ import java.util.List;
 public class UserController {
     @Autowired
     private UserServiceImpl userService;
-    /**
-     * 添加
-     * @param
-     * @return
-     */
-    @PostMapping("/insert")
-    public int insetUser(User user){
-        int data = userService.insertUser (user);
-        return data;
-    }
+    //=============后台=================
+
     /**
      * 模糊查询用户名
      * @param
@@ -50,7 +41,7 @@ public class UserController {
      */
     @PostMapping("allusers")
     public List<User> allUsers(){
-        List<User> users = userService.getAllUser();
+        List<User> users = userService.getAllUser ();
         return users;
     }
     /**
@@ -81,10 +72,41 @@ public class UserController {
      * @return
      */
     @PostMapping("/updatesex")
-    public int upLogin(Integer userId, char sex){
-        System.out.println (userId);
-        System.out.println (sex);
+    public int upUserSex(Integer userId, char sex){
         int userSex = userService.updateUserSex (userId,sex);
+        return userSex;
+    }
+    //===========前台===========
+    /**
+     * 添加
+     * @param
+     * @return
+     */
+    @PostMapping("/insert")
+    public int insetUser(User user){
+        int data = userService.insertUser (user);
+        return data;
+    }
+
+    /**
+     * 登录验证
+     * @param
+     * @return
+     */
+    @PostMapping("/login")
+    public  User loginUser(@RequestParam String userName,@RequestParam String userPass){
+        User user = userService.login (userName,userPass);
+        return user;
+    }
+
+    /**
+     * 前台用户修改
+     * @param user
+     * @return
+     */
+    @PostMapping("/updateuser")
+    public int upUser(User user){
+        int userSex = userService.updateUser (user);
         return userSex;
     }
 }
